@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ImagePopup = (props) => {
+function ImagePopup(props) {
     return (
         <div className={`pop-up pop-up-img ${props.card && 'pop-up_opened'}`}>
             <div className="pop-up-img__content">
