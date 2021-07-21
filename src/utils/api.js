@@ -28,7 +28,7 @@ export class Api {
 
   addCard(title, link) {
     return fetch(`${this._baseUrl}/cards`, {
-      method: 'POST',
+      method: "POST",
       headers: this._headers,
       body: JSON.stringify({
         name: title,
@@ -38,13 +38,13 @@ export class Api {
       .then((res) => this._getResponseData(res));
   };
 
-  editUserInfo(name, about) {
+  editUserInfo(data) {
     return fetch(`${this._baseUrl}/users/me`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: name,
-        about: about
+        name: data.name,
+        about: data.about
       })
     })
       .then((res) => this._getResponseData(res));
@@ -52,7 +52,7 @@ export class Api {
 
   newAvatar(link) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         avatar: link
@@ -61,9 +61,9 @@ export class Api {
       .then((res) => this._getResponseData(res));
   }
 
-  handleLikeCard(cardId) {
+  changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: 'PUT',
+      method: !isLiked ? 'DELETE' : 'PUT',
       headers: this._headers,
     })
       .then((res) => this._getResponseData(res));
@@ -71,7 +71,7 @@ export class Api {
 
   handleDeleteLike(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: this._headers,
     })
       .then((res) => this._getResponseData(res));
@@ -79,7 +79,7 @@ export class Api {
 
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: this._headers,
     })
       .then((res) => this._getResponseData(res));
@@ -87,10 +87,10 @@ export class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24',
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-24",
   headers: {
-    authorization: 'bcdeaa4a-1352-4fe5-8413-f3ec292b6c5c',
-    'Content-Type': 'application/json'
+    authorization: "bcdeaa4a-1352-4fe5-8413-f3ec292b6c5c",
+    "Content-Type": "application/json"
   }
 })
 
